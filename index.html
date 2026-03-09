@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alexandre Pais — Software Engineer</title>
+  <meta name="description" content="Alexandre Pais — Software Engineer from Portugal. Systems, Game Dev, AR/VR, Backend." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:       #04070a;
+      --surface:  #090e14;
+      --card:     #0c1219;
+      --border:   #162030;
+      --border2:  #1d2f42;
+      --accent:   #3b82f6;
+      --accent-d: #1d4ed8;
+      --accent-g: #60a5fa;
+      --green:    #22c55e;
+      --amber:    #f59e0b;
+      --text:     #e2e8f0;
+      --sub:      #94a3b8;
+      --muted:    #475569;
+      --mono:     'IBM Plex Mono', monospace;
+      --sans:     'Inter', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--sans); overflow-x: hidden; line-height: 1.6; }
+
+    /* Subtle gradient background */
+    body::after {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 10% 0%, rgba(59,130,246,0.05) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 90% 100%, rgba(29,78,216,0.04) 0%, transparent 60%);
+    }
+
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1.5rem, 6vw, 5rem);
+      background: rgba(4,7,10,0.85);
+      backdrop-filter: blur(16px) saturate(1.4);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand {
+      font-family: var(--mono); font-size: 0.85rem; font-weight: 600;
+      color: var(--text); letter-spacing: 0.02em;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .nav-brand .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+    .nav-links { display: flex; gap: 0.25rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+      color: var(--muted); text-decoration: none;
+      padding: 0.35rem 0.75rem; border-radius: 4px;
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+    .nav-cta {
+      font-family: var(--mono); font-size: 0.72rem; font-weight: 600;
+      color: var(--accent); text-decoration: none;
+      padding: 0.35rem 0.875rem;
+      border: 1px solid rgba(59,130,246,0.35);
+      border-radius: 4px; transition: all 0.15s;
+    }
+    .nav-cta:hover { background: rgba(59,130,246,0.1); border-color: var(--accent); }
+
+    /* ─── SHARED ─── */
+    .container { position: relative; z-index: 1; max-width: 1140px; margin: 0 auto; padding: 0 clamp(1.5rem, 6vw, 5rem); }
+
+    section { padding: clamp(5rem, 10vh, 7rem) 0; }
+    .section-label {
+      font-family: var(--mono); font-size: 0.68rem; font-weight: 500;
+      color: var(--accent); text-transform: uppercase; letter-spacing: 0.18em;
+      margin-bottom: 0.6rem;
+    }
+    .section-heading {
+      font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 700;
+      color: var(--text); letter-spacing: -0.03em; line-height: 1.15;
+    }
+    .section-sub {
+      font-size: 1rem; color: var(--sub); margin-top: 0.6rem; max-width: 560px; line-height: 1.75;
+    }
+    hr.sep { border: none; border-top: 1px solid var(--border); }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding-top: 60px;
+    }
+    .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    @media (max-width: 860px) { .hero-inner { grid-template-columns: 1fr; gap: 3rem; } }
+
+    .hero-status {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--mono); font-size: 0.7rem;
+      color: var(--green); letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      background: rgba(34,197,94,0.07);
+      border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 2rem; margin-bottom: 1.5rem;
+    }
+    .status-dot {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--green);
+      box-shadow: 0 0 6px var(--green); animation: blink-dot 2s ease-in-out infinite;
+    }
+    @keyframes blink-dot { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    .hero-name {
+      font-size: clamp(2.8rem, 7vw, 5.5rem); font-weight: 700;
+      color: var(--text); letter-spacing: -0.04em; line-height: 1;
+    }
+    .hero-name .blue { color: var(--accent-g); }
+    .hero-title {
+      margin-top: 1rem;
+      font-family: var(--mono); font-size: clamp(0.8rem, 1.5vw, 0.95rem);
+      color: var(--sub); letter-spacing: 0.03em;
+    }
+    .hero-desc {
+      margin-top: 1.5rem; font-size: 1rem; color: var(--sub); line-height: 1.8; max-width: 520px;
+    }
+    .hero-desc strong { color: var(--text); font-weight: 500; }
+
+    .hero-actions { margin-top: 2.5rem; display: flex; gap: 0.875rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--mono); font-size: 0.78rem; font-weight: 600;
+      text-decoration: none; border-radius: 6px; padding: 0.7rem 1.4rem;
+      transition: all 0.15s; cursor: pointer; border: none;
+    }
+    .btn-blue { background: var(--accent); color: #fff; }
+    .btn-blue:hover { background: var(--accent-d); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(59,130,246,0.3); }
+    .btn-ghost { background: transparent; color: var(--sub); border: 1px solid var(--border2); }
+    .btn-ghost:hover { color: var(--text); border-color: var(--sub); }
+
+    .hero-meta {
+      margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);
+      display: flex; gap: 2.5rem;
+    }
+    .meta-item { display: flex; flex-direction: column; gap: 0.2rem; }
+    .meta-val { font-size: 1.5rem; font-weight: 700; color: var(--text); letter-spacing: -0.03em; }
+    .meta-key { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; }
+
+    /* Hero right: terminal card */
+    .terminal-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+    }
+    .terminal-bar {
+      padding: 0.75rem 1rem; background: var(--card);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .t-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .t-red { background: #ff5f56; }
+    .t-yellow { background: #ffbd2e; }
+    .t-green { background: #27c93f; }
+    .t-title { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); margin: 0 auto; }
+    .terminal-body { padding: 1.5rem; font-family: var(--mono); font-size: 0.8rem; line-height: 1.9; }
+    .t-comment { color: var(--muted); }
+    .t-key { color: #7dd3fc; }
+    .t-str { color: #86efac; }
+    .t-arr { color: #fde68a; }
+    .t-num { color: #fb923c; }
+    .t-cursor { display: inline-block; width: 8px; height: 1em; background: var(--accent); vertical-align: middle; animation: blink 1s step-end infinite; margin-left: 2px; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* ─── ABOUT ─── */
+    #about { background: rgba(9,14,20,0.6); }
+    .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; margin-top: 3.5rem; }
+    @media(max-width:800px){ .about-grid { grid-template-columns: 1fr; gap: 3rem; } }
+    .about-body p { color: var(--sub); font-size: 0.975rem; line-height: 1.85; margin-bottom: 1.25rem; }
+    .about-body p strong { color: var(--text); font-weight: 500; }
+    .about-body p .hl { color: var(--accent-g); font-weight: 500; }
+
+    .exp-list { display: flex; flex-direction: column; gap: 0; }
+    .exp-item {
+      display: grid; grid-template-columns: 80px 1fr;
+      gap: 0 1.25rem; padding: 1.1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-item:first-child { border-top: 1px solid var(--border); }
+    .exp-date { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); padding-top: 0.15rem; line-height: 1.4; }
+    .exp-content {}
+    .exp-role { font-size: 0.875rem; font-weight: 600; color: var(--text); }
+    .exp-company { font-family: var(--mono); font-size: 0.7rem; color: var(--sub); margin-top: 0.15rem; }
+    .exp-badge {
+      display: inline-block; font-family: var(--mono); font-size: 0.6rem; font-weight: 600;
+      padding: 0.1rem 0.45rem; border-radius: 3px; margin-left: 0.5rem; vertical-align: middle;
+      background: rgba(59,130,246,0.12); color: var(--accent); border: 1px solid rgba(59,130,246,0.25);
+    }
+    .exp-badge.amber { background: rgba(245,158,11,0.1); color: var(--amber); border-color: rgba(245,158,11,0.25); }
+
+    /* ─── PROJECTS ─── */
+    .projects-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-top: 3.5rem; }
+    @media(max-width:900px){ .projects-grid { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:600px){ .projects-grid { grid-template-columns: 1fr; } }
+
+    .proj-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.5rem;
+      display: flex; flex-direction: column;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .proj-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .proj-card:hover { border-color: var(--border2); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.4); }
+    .proj-card:hover::before { opacity: 1; }
+
+    .proj-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.875rem; }
+    .proj-icon {
+      width: 36px; height: 36px; border-radius: 6px;
+      background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .proj-icon svg { width: 18px; height: 18px; color: var(--accent-g); }
+    .proj-award {
+      font-family: var(--mono); font-size: 0.6rem; color: var(--amber);
+      background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2);
+      padding: 0.2rem 0.5rem; border-radius: 3px;
+      display: flex; align-items: center; gap: 0.3rem;
+    }
+    .proj-title { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; }
+    .proj-desc { font-size: 0.825rem; color: var(--sub); line-height: 1.65; flex: 1; margin-bottom: 1.25rem; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1rem; }
+    .proj-tag {
+      font-family: var(--mono); font-size: 0.6rem;
+      padding: 0.15rem 0.5rem; border-radius: 3px;
+      background: rgba(255,255,255,0.04); color: var(--sub);
+      border: 1px solid var(--border);
+    }
+    .proj-link {
+      font-family: var(--mono); font-size: 0.68rem; color: var(--accent);
+      text-decoration: none; display: inline-flex; align-items: center; gap: 0.3rem;
+      transition: color 0.15s;
+    }
+    .proj-link:hover { color: var(--accent-g); }
+    .proj-link svg { width: 11px; height: 11px; }
+
+    /* ─── SKILLS ─── */
+    #skills { background: rgba(9,14,20,0.6); }
+    .skills-wrapper { margin-top: 3.5rem; display: grid; grid-template-columns: 220px 1fr; gap: 2rem; }
+    @media(max-width:700px){ .skills-wrapper { grid-template-columns: 1fr; } }
+
+    .skills-tabs { display: flex; flex-direction: column; gap: 0.3rem; }
+    .tab-btn {
+      width: 100%; text-align: left; background: transparent;
+      border: 1px solid transparent; border-radius: 6px;
+      padding: 0.75rem 1rem; cursor: pointer;
+      font-family: var(--mono); font-size: 0.75rem; font-weight: 500;
+      color: var(--muted); transition: all 0.15s;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .tab-btn .tab-icon { font-size: 1rem; }
+    .tab-btn:hover { color: var(--text); background: rgba(255,255,255,0.03); }
+    .tab-btn.active {
+      color: var(--accent-g); background: rgba(59,130,246,0.08);
+      border-color: rgba(59,130,246,0.25);
+    }
+
+    .skills-panel-area { position: relative; }
+    .skills-panel { display: none; }
+    .skills-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; }
+    @media(max-width:520px){ .skills-panel.active { grid-template-columns: 1fr; } }
+
+    .skill-row {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 6px; padding: 1rem 1.125rem;
+      transition: border-color 0.2s;
+    }
+    .skill-row:hover { border-color: var(--border2); }
+    .skill-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
+    .skill-name { font-size: 0.875rem; font-weight: 500; color: var(--text); }
+    .skill-lvl {
+      font-family: var(--mono); font-size: 0.65rem; font-weight: 600;
+      padding: 0.15rem 0.45rem; border-radius: 3px;
+    }
+    .lvl-expert { background: rgba(34,197,94,0.1); color: #4ade80; }
+    .lvl-proficient { background: rgba(59,130,246,0.1); color: var(--accent-g); }
+    .lvl-familiar { background: rgba(148,163,184,0.08); color: var(--sub); }
+    .skill-bar { height: 2px; background: var(--border); border-radius: 1px; overflow: hidden; }
+    .skill-fill { height: 100%; border-radius: 1px; width: 0; transition: width 0.9s ease; }
+    .fill-expert { background: linear-gradient(90deg, #22c55e, #4ade80); }
+    .fill-proficient { background: linear-gradient(90deg, var(--accent), var(--accent-g)); }
+    .fill-familiar { background: linear-gradient(90deg, var(--muted), var(--sub)); }
+
+    /* ─── CONTACT ─── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-top: 3.5rem; }
+    @media(max-width:768px){ .contact-grid { grid-template-columns: 1fr; gap: 3rem; } }
+
+    .contact-info p { color: var(--sub); font-size: 0.975rem; line-height: 1.8; margin-bottom: 2rem; }
+    .contact-items { display: flex; flex-direction: column; gap: 0.5rem; }
+    .contact-item {
+      display: flex; align-items: center; gap: 0.875rem;
+      padding: 0.875rem 1rem; border-radius: 6px;
+      background: var(--card); border: 1px solid var(--border);
+      text-decoration: none; color: var(--sub);
+      font-family: var(--mono); font-size: 0.75rem;
+      transition: all 0.15s;
+    }
+    .contact-item:hover { border-color: var(--border2); color: var(--text); }
+    .contact-item svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--accent); }
+
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-field { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-label { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; }
+    .form-input, .form-textarea {
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--text); padding: 0.75rem 1rem;
+      font-family: var(--sans); font-size: 0.9rem;
+      border-radius: 6px; outline: none; transition: border-color 0.15s; resize: none;
+    }
+    .form-input:focus, .form-textarea:focus { border-color: var(--accent); }
+    .form-textarea { min-height: 110px; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      position: relative; z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 1.75rem clamp(1.5rem,6vw,5rem);
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-copy { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); }
+    .footer-copy a { color: var(--accent); text-decoration: none; }
+
+    /* Fade-in */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media(max-width:640px){ .nav-links, .nav-cta { display: none; } }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-brand"><div class="dot"></div>Alexandre Pais</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="/cdn-cgi/l/email-protection#f49598918c84959d87909182b49399959d98da979b99" class="nav-cta"><span class="__cf_email__" data-cfemail="f59499908d85949c86919083b59298949c99db969a98">[email&#160;protected]</span></a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div>
+          <div class="hero-status">
+            <span class="status-dot"></span>
+            Disponível para oportunidades
+          </div>
+          <h1 class="hero-name">Alexandre<br><span class="blue">Pais</span></h1>
+          <p class="hero-title">Software Engineer · Game Dev · AR/VR · Portugal</p>
+          <p class="hero-desc">
+            Engenheiro de software com experiência em sistemas complexos, desenvolvimento de videojogos e aplicações imersivas. Combinação rara de <strong>backend sólido</strong>, <strong>game dev</strong> e <strong>AR/VR</strong> — com o foco em construir software que funciona bem a qualquer escala.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-blue">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              Ver Projetos
+            </a>
+            <a href="https://www.linkedin.com/in/alexandre-pais-6740a91b2/" target="_blank" class="btn btn-ghost">LinkedIn</a>
+            <a href="https://github.com/AlexPaisDev" target="_blank" class="btn btn-ghost">GitHub</a>
+          </div>
+          <div class="hero-meta">
+            <div class="meta-item"><span class="meta-val">5+</span><span class="meta-key">Anos de exp.</span></div>
+            <div class="meta-item"><span class="meta-val">4</span><span class="meta-key">Empresas</span></div>
+            <div class="meta-item"><span class="meta-val">2nd</span><span class="meta-key">GameJam IADE</span></div>
+          </div>
+        </div>
+
+        <div class="terminal-card reveal">
+          <div class="terminal-bar">
+            <span class="t-dot t-red"></span>
+            <span class="t-dot t-yellow"></span>
+            <span class="t-dot t-green"></span>
+            <span class="t-title">alexandre_pais.ts</span>
+          </div>
+          <div class="terminal-body">
+<span class="t-comment">// Software Engineer</span>
+<br>
+<span class="t-key">const</span> dev = {
+<br>
+&nbsp;&nbsp;<span class="t-key">name</span>: <span class="t-str">"Alexandre Pais"</span>,
+<br>
+&nbsp;&nbsp;<span class="t-key">location</span>: <span class="t-str">"Portugal 🇵🇹"</span>,
+<br>
+&nbsp;&nbsp;<span class="t-key">focus</span>: [
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-arr">"Systems Engineering"</span>,
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-arr">"Game Development"</span>,
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-arr">"AR / VR"</span>
+<br>
+&nbsp;&nbsp;],
+<br>
+&nbsp;&nbsp;<span class="t-key">stack</span>: [
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"C#"</span>, <span class="t-str">"C"</span>, <span class="t-str">"Java"</span>,
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"Unity"</span>, <span class="t-str">"Scala"</span>
+<br>
+&nbsp;&nbsp;],
+<br>
+&nbsp;&nbsp;<span class="t-key">available</span>: <span class="t-num">true</span>
+<br>
+}<span class="t-cursor"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="sep" />
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <p class="section-label">01 — Sobre mim</p>
+      <h2 class="section-heading">Engenheiro de Software</h2>
+      <div class="about-grid">
+        <div class="about-body reveal">
+          <p>
+            Sou o <strong>Alexandre Pais</strong>, software engineer português com 23 anos. O meu percurso cobre sistemas distribuídos de dados, desenvolvimento de aplicações AR/VR para clientes industriais e engenharia de mecânicas de jogo em Unity.
+          </p>
+          <p>
+            Frequento a <strong>Licenciatura em Engenharia Informática</strong> no Instituto Politécnico de Setúbal, com passagem pelo <strong>Instituto Politécnico de Macau</strong> em 2025 — experiência que reforçou a minha capacidade de trabalhar em ambientes multiculturais e com equipas distribuídas.
+          </p>
+          <p>
+            O meu interesse é trabalhar em software de alta exigência, onde as decisões técnicas têm impacto real — seja em <span class="hl">sistemas embebidos</span>, <span class="hl">plataformas críticas</span> ou <span class="hl">ferramentas de simulação</span>. Sólido em C, C# e Java; confortável com abstrações de baixo nível e arquitectura de sistemas.
+          </p>
+          <p>
+            Fluente em inglês (C2). Experiência em apresentar projetos técnicos a stakeholders empresariais (Vodafone, Oracle, Marinha Portuguesa).
+          </p>
+        </div>
+        <div class="exp-list reveal">
+          <div class="exp-item">
+            <div class="exp-date">Out 2025<br>Fev 2026</div>
+            <div class="exp-content">
+              <div class="exp-role">Game Developer <span class="exp-badge">Estágio</span></div>
+              <div class="exp-company">Overflow Interactive · Setúbal</div>
+            </div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-date">Jan 2025<br>Mai 2025</div>
+            <div class="exp-content">
+              <div class="exp-role">Mobilidade Académica <span class="exp-badge">Macau</span></div>
+              <div class="exp-company">Instituto Politécnico de Macau · China</div>
+            </div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-date">Mar 2023<br>Ago 2023</div>
+            <div class="exp-content">
+              <div class="exp-role">AR/VR Developer <span class="exp-badge">Estágio</span></div>
+              <div class="exp-company">Arsenal do Alfeite · Almada</div>
+            </div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-date">Set 2020<br>Abr 2022</div>
+            <div class="exp-content">
+              <div class="exp-role">Junior Software Developer</div>
+              <div class="exp-company">Fraudio B.V. · Lisboa</div>
+            </div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-date">Mar 2020<br>Jun 2020</div>
+            <div class="exp-content">
+              <div class="exp-role">Web Developer <span class="exp-badge">Estágio</span></div>
+              <div class="exp-company">ScorpionBonus · Almada</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="sep" />
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <p class="section-label">02 — Projetos</p>
+      <h2 class="section-heading">Trabalho Selecionado</h2>
+      <p class="section-sub">Projetos que demonstram a minha capacidade técnica em diferentes domínios.</p>
+      <div class="projects-grid">
+
+        <div class="proj-card reveal">
+          <div class="proj-header">
+            <div class="proj-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <div class="proj-award">🏆 2.º Lugar · IADE 2022</div>
+          </div>
+          <div class="proj-title">Little Help</div>
+          <p class="proj-desc">Jogo arcade social desenvolvido em 72h para a Games For Good GameJam. Sistema de gestão de recursos, ciclo de recompensa (game loop) e mecânicas de decisão estratégica.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Unity</span>
+            <span class="proj-tag">C#</span>
+            <span class="proj-tag">Game Design</span>
+          </div>
+          <a href="https://lodyny.itch.io/little.help" target="_blank" class="proj-link">
+            Ver no itch.io
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-header">
+            <div class="proj-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+            </div>
+          </div>
+          <div class="proj-title">AR/VR — Arsenal do Alfeite</div>
+          <p class="proj-desc">Aplicação iOS de Realidade Aumentada e simulador de navegação de navio (PC + iOS) para cliente de defesa. Apresentado a Vodafone, Oracle e Marinha Portuguesa.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Unity</span>
+            <span class="proj-tag">C#</span>
+            <span class="proj-tag">AR/VR</span>
+            <span class="proj-tag">iOS</span>
+          </div>
+          <a href="#contact" class="proj-link">
+            Saber mais
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-header">
+            <div class="proj-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            </div>
+          </div>
+          <div class="proj-title">Dungeon Below</div>
+          <p class="proj-desc">Tower Defense 3D com IA de inimigos, sistema de ondas e progressão por níveis. Foco em arquitectura de sistemas modulares de jogo e performance em Unity.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Unity</span>
+            <span class="proj-tag">C#</span>
+            <span class="proj-tag">3D</span>
+            <span class="proj-tag">AI</span>
+          </div>
+          <a href="https://github.com/AlexPaisDev/Dungeon_Below" target="_blank" class="proj-link">
+            Ver no GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-header">
+            <div class="proj-icon" style="background:rgba(245,158,11,0.08);border-color:rgba(245,158,11,0.2)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+          </div>
+          <div class="proj-title">Dashboards Analíticos — Fraudio</div>
+          <p class="proj-desc">Pipeline de dados em Scala / Databricks para detecção de fraude. Automação de relatórios com integração Slack e avaliação de tecnologias de armazenamento distribuído.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Scala</span>
+            <span class="proj-tag">Databricks</span>
+            <span class="proj-tag">SQL</span>
+            <span class="proj-tag">Slack API</span>
+          </div>
+          <a href="#contact" class="proj-link">
+            Saber mais
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-header">
+            <div class="proj-icon" style="background:rgba(148,163,184,0.06);border-color:rgba(148,163,184,0.15)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+          </div>
+          <div class="proj-title">42 Piscine — libft & ft_printf</div>
+          <p class="proj-desc">Reimplementação da stdlib C e da função printf sem bibliotecas externas. Exercício intensivo de gestão manual de memória e programação low-level rigorosa.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">C</span>
+            <span class="proj-tag">Low-level</span>
+            <span class="proj-tag">Memory</span>
+          </div>
+          <a href="https://github.com/AlexPaisDev/42-Piscine" target="_blank" class="proj-link">
+            Ver no GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-header">
+            <div class="proj-icon" style="background:rgba(34,197,94,0.08);border-color:rgba(34,197,94,0.2)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.5"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+            </div>
+          </div>
+          <div class="proj-title">Hotel Reservation System</div>
+          <p class="proj-desc">Sistema fullstack de reservas de hotel com base de dados relacional MySQL, painel de administração e gestão de disponibilidade. Projeto final de curso (GPSI, 2020).</p>
+          <div class="proj-tags">
+            <span class="proj-tag">PHP</span>
+            <span class="proj-tag">MySQL</span>
+            <span class="proj-tag">JavaScript</span>
+          </div>
+          <a href="https://github.com/AlexPaisDev/HotelReservationWebSite" target="_blank" class="proj-link">
+            Ver no GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="sep" />
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <p class="section-label">03 — Skills</p>
+      <h2 class="section-heading">Stack Técnico</h2>
+      <p class="section-sub">Clica numa categoria para ver as tecnologias correspondentes.</p>
+      <div class="skills-wrapper reveal">
+        <div class="skills-tabs">
+          <button class="tab-btn active" onclick="switchTab('systems',this)">
+            <span class="tab-icon">⚙️</span> Systems / Game Dev
+          </button>
+          <button class="tab-btn" onclick="switchTab('web',this)">
+            <span class="tab-icon">🌐</span> Web Dev
+          </button>
+          <button class="tab-btn" onclick="switchTab('languages',this)">
+            <span class="tab-icon">💻</span> Linguagens
+          </button>
+          <button class="tab-btn" onclick="switchTab('tools',this)">
+            <span class="tab-icon">🔧</span> Ferramentas
+          </button>
+        </div>
+
+        <div class="skills-panel-area">
+
+          <!-- SYSTEMS / GAME DEV -->
+          <div id="tab-systems" class="skills-panel active">
+            <div class="skill-row">
+              <div class="skill-top"><span class="skill-name">Unity</span><span class="skill-lvl lvl-expert">Expert</span></div>
+              <div class="skill-bar"><div class="skill-fill fill-expert" data-w="90"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-top"><span class="skill-name">C# — Systems & Game Logic</span><span class="skill-lvl lvl-expert">Expert</span></div>
+              <div class="skill-bar"><div class="skill-fill fill-expert" data-w="88"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-top"><span class="skill-name">AR / VR Development</span><span class="skill-lvl lvl-proficient">Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill fill-proficient" data-w="80"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-top"><span class="skill-name">Animation State Machines</span><span class="skill-lvl lvl-proficient">Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill fill-proficient" data-w="78"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-top"><span class="skill-name">LÖVE (Lua)</span><span class="skill-lvl lvl-familiar">Familiar</span></div>
+              <div class="skill-bar"><div class="skill-fill fill-familiar" data-w="60"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-top"><span class="skill-name">Game Design & Level Design</span><span class="skill-lvl lvl-proficient">Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill fill-proficient" data-w="75"></div></div>
+            </div>
+          </div>
+
+          <!-- WEB DEV -->
+          <div id="tab-web" class="skills-panel">
+            <div class="skill-row">
+              <div class="skill-top"><span class="skill-name">HTML / CSS</span><span class="skill-lvl lvl-expert">Expert</span></div>
+              <div class="skill-bar"><div class="skill-fill fill-expert" data-w="85"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-top"><span class="skill-name">JavaScript</span><span class="skill-lvl lvl-proficient">Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill fill-proficient" data-w="78"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-top"><span class="skill-name">PHP</span><span class="skill-lvl lvl-proficient">Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill fill-proficient" data-w="70"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-top"><span class="skill-name">MySQL</span><span class="skill-lvl lvl-proficient">Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill fill-proficient" data-w="75"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-top"><span class="skill-name">Bootstrap</span><span class="skill-lvl lvl-familiar">Familiar</span></div>
+              <div class="skill-bar"><div class="skill-fill fill-familiar" data-w="65"></div></div>
+            </div>
+          </div>
+
+          <!-- LANGUAGES -->
+          <div id="tab-languages" class="skills-panel">
+            <div class="skill-row">
+              <div class="skill-top"><span class="skill-name">C#</span><span class="skill-lvl lvl-expert">Expert</span></div>
+              <div class="skill-bar"><div class="skill-fill fill-expert" data-w="88"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-top"><span class="skill-name">C</span><span class="skill-lvl lvl-proficient">Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill fill-proficient" data-w="75"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-top"><span class="skill-name">Java</span><span class="skill-lvl lvl-proficient">Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill fill-proficient" data-w="70"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-top"><span class="skill-name">Python</span><span class="skill-lvl lvl-familiar">Familiar</span></div>
+              <div class="skill-bar"><div class="skill-fill fill-familiar" data-w="65"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-top"><span class="skill-name">Scala</span><span class="skill-lvl lvl-familiar">Familiar</span></div>
+              <div class="skill-bar"><div class="skill-fill fill-familiar" data-w="60"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-top"><span class="skill-name">Lua</span><span class="skill-lvl lvl-familiar">Familiar</span></div>
+              <div class="skill-bar"><div class="skill-fill fill-familiar" data-w="58"></div></div>
+            </div>
+          </div>
+
+          <!-- TOOLS -->
+          <div id="tab-tools" class="skills-panel">
+            <div class="skill-row">
+              <div class="skill-top"><span class="skill-name">Git / GitHub</span><span class="skill-lvl lvl-expert">Expert</span></div>
+              <div class="skill-bar"><div class="skill-fill fill-expert" data-w="92"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-top"><span class="skill-name">Visual Studio Code</span><span class="skill-lvl lvl-expert">Expert</span></div>
+              <div class="skill-bar"><div class="skill-fill fill-expert" data-w="90"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-top"><span class="skill-name">Linux</span><span class="skill-lvl lvl-proficient">Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill fill-proficient" data-w="72"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-top"><span class="skill-name">Databricks</span><span class="skill-lvl lvl-familiar">Familiar</span></div>
+              <div class="skill-bar"><div class="skill-fill fill-familiar" data-w="62"></div></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="sep" />
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-label">04 — Contacto</p>
+      <h2 class="section-heading">Fala Comigo</h2>
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <p>Estou a explorar oportunidades em engenharia de software — especialmente em ambientes de alta exigência técnica. Se trabalhas numa empresa como a <strong>Critical TechWorks</strong> ou similar e queres saber mais, não hesites.</p>
+          <div class="contact-items">
+            <a href="/cdn-cgi/l/email-protection#b7d6dbd2cfc7d6dec4d3d2c1f7d0dad6dedb99d4d8da" class="contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span class="__cf_email__" data-cfemail="82e3eee7faf2e3ebf1e6e7f4c2e5efe3ebeeace1edef">[email&#160;protected]</span>
+            </a>
+            <a href="https://github.com/AlexPaisDev" target="_blank" class="contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              github.com/AlexPaisDev
+            </a>
+            <a href="https://www.linkedin.com/in/alexandre-pais-6740a91b2/" target="_blank" class="contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              linkedin.com/in/alexandre-pais
+            </a>
+            <a href="tel:+351910863020" class="contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.58 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6 6l.89-.89a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.5 16.92z"/></svg>
+              (+351) 910 863 020
+            </a>
+          </div>
+        </div>
+        <div class="contact-form reveal">
+          <!-- ✅ Formspree: substitui YOUR_FORM_ID pelo teu ID em formspree.io/forms -->
+          <form id="contact-form" action="https://formspree.io/f/mwvrvdog" method="POST" novalidate>
+            <div class="form-field">
+              <label class="form-label" for="name">Nome</label>
+              <input id="name" type="text" name="name" class="form-input" placeholder="O teu nome" required />
+            </div>
+            <div class="form-field" style="margin-top:0.875rem">
+              <label class="form-label" for="email">Email</label>
+              <input id="email" type="email" name="email" class="form-input" placeholder="teu@email.com" required />
+            </div>
+            <div class="form-field" style="margin-top:0.875rem">
+              <label class="form-label" for="message">Mensagem</label>
+              <textarea id="message" name="message" class="form-textarea" placeholder="Olá Alexandre, gostaria de..." required></textarea>
+            </div>
+            <div style="margin-top:1rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+              <button type="submit" id="submit-btn" class="btn btn-blue">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                Enviar Mensagem
+              </button>
+              <p id="form-status" style="font-family:var(--mono);font-size:0.72rem;display:none"></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p class="footer-copy">© 2026 Alexandre Pais — Feito em Portugal</p>
+    <p class="footer-copy">Hospedado no <a href="https://github.com/AlexPaisDev" target="_blank">GitHub Pages</a></p>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Reveal on scroll
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('in'), i * 100);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // Animate bars of a given panel
+    function animateBars(panel) {
+      panel.querySelectorAll('.skill-fill').forEach(bar => {
+        bar.style.width = '0%';
+        // Force reflow so transition fires
+        void bar.offsetWidth;
+        setTimeout(() => { bar.style.width = bar.dataset.w + '%'; }, 60);
+      });
+    }
+
+    // Tab switching — ONLY shows selected panel
+    function switchTab(id, btn) {
+      // Hide all panels
+      document.querySelectorAll('.skills-panel').forEach(p => p.classList.remove('active'));
+      // Deactivate all buttons
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      // Show selected panel
+      const panel = document.getElementById('tab-' + id);
+      panel.classList.add('active');
+      btn.classList.add('active');
+      // Animate bars in the newly shown panel
+      animateBars(panel);
+    }
+
+    // Animate initial active tab bars on load
+    window.addEventListener('load', () => {
+      const active = document.querySelector('.skills-panel.active');
+      if (active) setTimeout(() => animateBars(active), 400);
+    });
+
+    // Formspree async submit
+    const form = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const status = document.getElementById('form-status');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+      if (!name || !email || !message) {
+        status.style.display = 'block';
+        status.style.color = '#f87171';
+        status.textContent = '⚠ Preenche todos os campos.';
+        return;
+      }
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'A enviar...';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form)
+        });
+        if (res.ok) {
+          status.style.display = 'block';
+          status.style.color = '#4ade80';
+          status.textContent = '✓ Mensagem enviada com sucesso!';
+          form.reset();
+        } else {
+          const data = await res.json();
+          throw new Error(data?.errors?.[0]?.message || 'Erro ao enviar.');
+        }
+      } catch (err) {
+        status.style.display = 'block';
+        status.style.color = '#f87171';
+        status.textContent = '✗ ' + err.message;
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Enviar Mensagem';
+        setTimeout(() => { status.style.display = 'none'; }, 5000);
+      }
+    });
+
+    // Active nav highlight
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY + 80;
+      sections.forEach(s => {
+        const a = document.querySelector(`.nav-links a[href="#${s.id}"]`);
+        if (!a) return;
+        a.style.color = (y >= s.offsetTop && y < s.offsetTop + s.offsetHeight) ? 'var(--text)' : '';
+      });
+    });
+  </script>
+</body>
+</html>
