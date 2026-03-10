@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alexandre Pais — Download CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:       #04070a;
+      --surface:  #090e14;
+      --surface2: #0c1219;
+      --border:   #162030;
+      --border2:  #1d2f42;
+      --accent:   #3b82f6;
+      --accent-d: #1d4ed8;
+      --accent-g: #60a5fa;
+      --accent-glow: rgba(59,130,246,0.15);
+      --text:     #e2e8f0;
+      --sub:      #94a3b8;
+      --muted:    #475569;
+      --mono:     'IBM Plex Mono', monospace;
+      --sans:     'Inter', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      overflow-x: hidden;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+    /* ── Grid background ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(59,130,246,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59,130,246,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 56px;
+      background: rgba(4,7,10,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-family: var(--mono); font-size: 0.85rem; font-weight: 600;
+      color: var(--text); text-decoration: none; letter-spacing: 0.02em;
+    }
+    .nav-brand .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+    .nav-back {
+      font-family: var(--mono); font-size: 0.72rem; font-weight: 600;
+      color: var(--sub); text-decoration: none;
+      padding: 0.35rem 0.75rem;
+      border: 1px solid var(--border2); border-radius: 4px;
+      transition: all 0.15s; display: flex; align-items: center; gap: 0.4rem;
+    }
+    .nav-back:hover { color: var(--text); border-color: var(--sub); }
+    .nav-back svg { width: 11px; height: 11px; }
+
+    /* ── Main ── */
+    main {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 5rem 1.5rem 3rem;
+    }
+
+    .card {
+      width: 100%; max-width: 580px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: 0 0 60px rgba(59,130,246,0.06);
+    }
+
+    /* ── Card header ── */
+    .card-label {
+      font-family: var(--mono); font-size: 0.68rem; font-weight: 600;
+      color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .card-title {
+      font-size: 1.6rem; font-weight: 600;
+      color: var(--text); line-height: 1.25;
+      margin-bottom: 0.5rem;
+    }
+    .card-sub {
+      font-size: 0.875rem; color: var(--sub); line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px; background: var(--border);
+      margin-bottom: 2rem;
+    }
+
+    /* ── CV Option cards ── */
+    .cv-options {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    @media (max-width: 480px) {
+      .cv-options { grid-template-columns: 1fr; }
+    }
+
+    .cv-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem 1.25rem;
+      text-decoration: none;
+      display: flex; flex-direction: column; gap: 1rem;
+      transition: all 0.2s; cursor: pointer;
+      position: relative; overflow: hidden;
+    }
+    .cv-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--accent);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+    .cv-card:hover {
+      border-color: rgba(59,130,246,0.4);
+      background: rgba(12,18,25,0.9);
+      box-shadow: 0 0 30px rgba(59,130,246,0.08);
+      transform: translateY(-2px);
+    }
+    .cv-card:hover::before { transform: scaleX(1); }
+
+    .cv-flag {
+      font-size: 2rem; line-height: 1;
+    }
+    .cv-lang {
+      font-family: var(--mono); font-size: 0.7rem; font-weight: 600;
+      color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+    .cv-name {
+      font-size: 1rem; font-weight: 600; color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+    .cv-desc {
+      font-size: 0.78rem; color: var(--sub); line-height: 1.5;
+    }
+    .cv-btn {
+      display: flex; align-items: center; gap: 0.4rem;
+      font-family: var(--mono); font-size: 0.72rem; font-weight: 600;
+      color: var(--accent);
+      margin-top: auto;
+    }
+    .cv-btn svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+    /* ── Footer note ── */
+    .card-note {
+      margin-top: 1.75rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; gap: 0.5rem;
+      font-family: var(--mono); font-size: 0.68rem; color: var(--muted);
+    }
+    .card-note svg { width: 12px; height: 12px; flex-shrink: 0; color: var(--accent); }
+
+    /* ── Footer ── */
+    footer {
+      position: relative; z-index: 1;
+      text-align: center;
+      padding: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-family: var(--mono); font-size: 0.68rem; color: var(--muted);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a href="index.html" class="nav-brand">
+      <div class="dot"></div>
+      Alexandre Pais
+    </a>
+    <a href="index.html" class="nav-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Voltar ao portfólio
+    </a>
+  </nav>
+
+  <main>
+    <div class="card">
+      <p class="card-label">Curriculum Vitae</p>
+      <h1 class="card-title">Download CV</h1>
+      <p class="card-sub">Escolhe o idioma preferido para fazer download do CV. Ambas as versões têm o mesmo conteúdo e design.</p>
+
+      <div class="divider"></div>
+
+      <div class="cv-options">
+
+        <!-- Portuguese -->
+        <a href="Alexandre_Pais_CV.pdf" download="Alexandre_Pais_CV_PT.pdf" class="cv-card">
+          <div class="cv-flag">🇵🇹</div>
+          <div>
+            <p class="cv-lang">Português</p>
+            <p class="cv-name">CV em Português</p>
+            <p class="cv-desc">Versão em português europeu, ideal para empresas nacionais.</p>
+          </div>
+          <div class="cv-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Fazer download
+          </div>
+        </a>
+
+        <!-- English -->
+        <a href="Alexandre_Pais_CV_EN.pdf" download="Alexandre_Pais_CV_EN.pdf" class="cv-card">
+          <div class="cv-flag">🇺🇸</div>
+          <div>
+            <p class="cv-lang">English</p>
+            <p class="cv-name">CV in English</p>
+            <p class="cv-desc">English version, suitable for international companies and opportunities.</p>
+          </div>
+          <div class="cv-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Download
+          </div>
+        </a>
+
+      </div>
+
+      <div class="card-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        Formato PDF · Última atualização: Março 2026
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2026 Alexandre Pais —
+    <a href="https://github.com/AlexPaisDev" target="_blank">GitHub</a> ·
+    <a href="https://linkedin.com/in/alexandre-pais-6740a91b2" target="_blank">LinkedIn</a>
+  </footer>
+
+</body>
+</html>
