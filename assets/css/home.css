@@ -1,0 +1,54 @@
+/* =====================================================================
+   Entry page only (index.html): two halves, data (blue) and software (red).
+   Builds on pixel.css; each half gets its colours from .theme-data / .theme-soft.
+   ===================================================================== */
+.home { min-height: 100vh; display: grid; grid-template-rows: auto 1fr auto; background: var(--ink); }
+
+/* title card that sits across the seam */
+.home-head { position: absolute; left: 0; right: 0; top: 24px; z-index: 5; display: flex; justify-content: center; pointer-events: none; padding: 0 16px; }
+.home-card { pointer-events: auto; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 26px 16px; border-image-source: var(--frame-plain); text-align: center; }
+.home-name { font-size: 18px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.home-q { font-size: clamp(24px, 3.4vw, 36px); color: var(--ink); }
+.home .lang { margin-top: 6px; border-color: var(--ink); background: #e6e6de; }
+.home .lang button { color: var(--ink); }
+.home .lang button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+
+/* the two halves */
+.split { grid-row: 1 / 3; display: flex; min-height: 100vh; }
+.half {
+  position: relative; flex: 1 1 50%; display: flex; align-items: center; justify-content: center;
+  padding: 170px 28px 120px; overflow: hidden; text-decoration: none; color: var(--text);
+  background: var(--tile) repeat; background-size: 24px 24px;
+  transition: flex-grow .25s steps(5);
+}
+.half + .half { border-left: 6px solid var(--ink); }
+.half-scene { position: absolute; left: 0; right: 0; bottom: 0; height: var(--scene-h); background: var(--scene) repeat-x left bottom; background-size: var(--scene-w) var(--scene-h); }
+.js .half-scene { animation: drift 30s linear infinite; }
+.theme-data .half-scene { animation-duration: 14s; }
+
+.half-win { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; width: min(420px, 100%); padding: 18px 22px 22px; transition: transform .2s steps(3); }
+.half-ic { display: grid; place-items: center; width: 72px; height: 72px; margin-bottom: 6px; border: 3px solid var(--ink); background: var(--c1l); }
+.half-ic .px-ic { width: 52px; height: 52px; }
+.half-kicker { font-size: 15px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--c1d); }
+.half-name { font-size: clamp(30px, 3.6vw, 42px); font-weight: 700; line-height: 1.05; color: var(--c1); text-shadow: 3px 3px 0 var(--ink); }
+.half-role { font-size: 18px; color: var(--ink); }
+.half-list { font-size: 16px; color: var(--muted); }
+.half-go { margin-top: 14px; }
+
+.half:hover, .half:focus-visible { flex-grow: 1.25; }
+.half:hover .half-win, .half:focus-visible .half-win { transform: translateY(-6px); }
+.half:hover .half-go .cur, .half:focus-visible .half-go .cur { animation: nudge .6s steps(2) infinite; }
+.half:focus-visible { outline: 4px dashed var(--ink); outline-offset: -10px; }
+
+.home-foot { grid-row: 3; position: relative; z-index: 2; padding: 12px 16px; background: var(--ink); color: #e8e8e0; text-align: center; font-size: 16px; }
+.home-foot a { color: #fff; }
+
+@media (max-width: 760px) {
+  .home-head { position: static; padding: 16px; background: var(--ink); }
+  .split { flex-direction: column; min-height: 0; grid-row: 2; }
+  .half { padding: 28px 16px 64px; }
+  .half + .half { border-left: 0; border-top: 6px solid var(--ink); }
+  .half:hover, .half:focus-visible { flex-grow: 1; }
+  .half-ic { width: 60px; height: 60px; }
+  .half-ic .px-ic { width: 44px; height: 44px; }
+}

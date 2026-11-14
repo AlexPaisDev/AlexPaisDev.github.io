@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+  NOT FOUND PAGE. GitHub Pages shows it for any missing address, at any folder depth,
+  so every link and file path here starts with "/" (site root).
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found · Alexandre Pais</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#283038">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/pixel.css">
+  <style>
+    /* page-specific layout; everything else comes from pixel.css */
+    .lost { min-height: 100vh; display: grid; place-items: center; padding: 32px 16px; background: var(--ink); }
+    .lost-card { width: min(560px, 100%); border-image-source: var(--frame-plain); }
+    .lost-card h1 { font-size: clamp(28px, 6vw, 40px); color: var(--ink); }
+    .lost-card p { margin-top: 8px; }
+    .lost-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <main class="lost">
+    <div class="win dialog lost-card">
+      <p class="win-label">404</p>
+      <h1 data-i18n="nf.title">Nothing here…</h1>
+      <p data-i18n="nf.text">This page doesn't exist, or it moved. Pick a side to get back on track.</p>
+      <div class="lost-actions">
+        <a class="pbtn pbtn-main theme-data" href="/data/"><span class="cur" aria-hidden="true"></span><span data-i18n="nf.data">Data side</span></a>
+        <a class="pbtn pbtn-main theme-soft" href="/software/"><span class="cur" aria-hidden="true"></span><span data-i18n="nf.soft">Software side</span></a>
+        <a class="pbtn" href="/" data-i18n="nf.home">Start page</a>
+      </div>
+    </div>
+  </main>
+  <script>
+    /* Portuguese strings for this page (kept inline because they're few). */
+    window.I18N_PT = {
+      'meta.title': 'Página não encontrada · Alexandre Pais',
+      'nf.title': 'Não há nada aqui…',
+      'nf.text': 'Esta página não existe, ou mudou de sítio. Escolhe um lado para voltar ao caminho.',
+      'nf.data': 'Lado de dados',
+      'nf.soft': 'Lado de software',
+      'nf.home': 'Página inicial',
+    };
+  </script>
+  <script src="/assets/js/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+/* Portuguese (pt-PT) strings for the entry page (index.html). */
+window.I18N_PT = Object.assign(window.I18N_PT || {}, {
+  'meta.title': 'Alexandre Pais · Engenheiro de Dados & Software',
+  'meta.desc': 'Alexandre Pais, data engineer e engenheiro de software em Lisboa. Escolhe um lado: dados e IA (pipelines, Power BI, Azure, Fabric, Databricks) ou engenharia de software (C#, Unity, sistemas em tempo real, AR). Disponível para funções na Ásia.',
+  'home.q': 'Que lado procuras?',
+  'home.dataKicker': 'Lado de dados',
+  'home.dataName': 'Dados &amp; IA',
+  'home.dataRole': 'Data Engineer · Consultor de Dados &amp; IA',
+  'home.softKicker': 'Lado de software',
+  'home.softName': 'Engenharia de Software',
+  'home.softRole': 'Engenheiro de Software · Game Dev · AR/VR',
+  'home.enter': 'Entrar',
+  'home.note': 'Podes mudar de lado a qualquer momento na barra de cima.',
+  'home.cvs': 'Todos os CVs',
+});

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<!--
+  SOFTWARE SIDE (red / land theme). Same structure and classes as data/index.html.
+  English text lives here; Portuguese lives in assets/js/i18n/ (keys = data-i18n attributes).
+-->
+<html lang="en" data-side="soft">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alexandre Pais · Software Engineer</title>
+  <meta name="description" content="Alexandre Pais, software engineer in Lisbon: C# and Unity systems, real-time simulations with Node-RED, AR apps for iOS, low-level C and self-hosted infrastructure. Open to roles in Asia.">
+  <meta name="author" content="Alexandre Pais">
+  <meta name="theme-color" content="#2c3e6e">
+  <link rel="canonical" href="https://alexpaisdev.github.io/software/">
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://alexpaisdev.github.io/software/">
+  <meta property="og:title" content="Alexandre Pais · Software Engineer">
+  <meta property="og:description" content="C# and Unity systems, real-time simulations, AR for iOS, low-level C. Based in Lisbon, open to roles in Asia.">
+  <meta property="og:image" content="https://alexpaisdev.github.io/assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/pixel.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Alexandre Pais",
+    "url": "https://alexpaisdev.github.io/software/",
+    "jobTitle": "Software Engineer",
+    "address": { "@type": "PostalAddress", "addressLocality": "Lisbon", "addressCountry": "PT" },
+    "alumniOf": [{ "@type": "CollegeOrUniversity", "name": "Polytechnic Institute of Setúbal" }, { "@type": "CollegeOrUniversity", "name": "Macao Polytechnic Institute" }],
+    "knowsAbout": ["C#", "Unity", "C", "Java", "AR/VR", "Node-RED", "Docker", "Linux"],
+    "sameAs": ["https://www.linkedin.com/in/alexandre-pais-6740a91b2/", "https://github.com/AlexPaisDev"]
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip" href="#top" data-i18n="skip">Skip to content</a>
+
+  <!-- ============ TOP BAR ============ -->
+  <header class="bar">
+    <div class="bar-row">
+      <a class="logo" href="#top">Alexandre Pais</a>
+      <nav class="menu-h" aria-label="Main" data-spy>
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#quests" data-i18n="nav.exp">Experience</a>
+        <a href="#projects" data-i18n="nav.proj">Projects</a>
+        <a href="#skills" data-i18n="nav.skills">Skills</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <div class="bar-tools">
+        <div class="lang" role="group" aria-label="Language">
+          <button type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang="pt" aria-pressed="false">PT</button>
+        </div>
+        <a class="pbtn pbtn-sm pbtn-ghost hide-sm" href="../data/"><span data-i18n="switch">Data side</span></a>
+        <a class="pbtn pbtn-sm hide-sm" href="../Alexandre_Pais_CV_EN.pdf" data-cv data-en="../Alexandre_Pais_CV_EN.pdf" data-pt="../Alexandre_Pais_CV_PT.pdf" download><span class="px-ic" data-px="disk"></span><span data-i18n="save">Save CV</span></a>
+        <button class="pbtn pbtn-sm show-sm" type="button" data-menu-toggle aria-controls="startmenu" aria-expanded="false" data-i18n="menu">Menu</button>
+      </div>
+    </div>
+    <!-- start menu (small screens) -->
+    <nav class="win startmenu" id="startmenu" aria-label="Menu" data-i18n-attr="aria-label:menu">
+      <ul class="menu-list">
+        <li><a href="#about" data-i18n="nav.about">About</a></li>
+        <li><a href="#quests" data-i18n="nav.exp">Experience</a></li>
+        <li><a href="#projects" data-i18n="nav.proj">Projects</a></li>
+        <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+        <li><a href="#records" data-i18n="nav.records">Records</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+        <li><a href="../Alexandre_Pais_CV_EN.pdf" data-cv data-en="../Alexandre_Pais_CV_EN.pdf" data-pt="../Alexandre_Pais_CV_PT.pdf" download><span data-i18n="save">Save CV</span></a></li>
+        <li><a href="../data/" data-i18n="switch">Data side</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="wrap" id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow" data-i18n="hero.role">Software Engineer · Game Dev · AR/VR</p>
+        <h1 class="title">Alexandre<br>Pais</h1>
+        <div class="win dialog" data-type>
+          <p data-type-text data-i18n="hero.dialog">Hi! I'm Alexandre, a software engineer from Lisbon. I build software that holds up under real use: modular C# and Unity systems, real-time simulations wired to live data, and cross-platform apps for PC and iOS.</p>
+          <span class="next" aria-hidden="true"></span>
+        </div>
+        <div class="actions">
+          <a class="pbtn pbtn-main" href="#contact"><span class="cur" aria-hidden="true"></span><span data-i18n="hero.cta">Talk to me</span></a>
+          <a class="pbtn" href="../Alexandre_Pais_CV_EN.pdf" data-cv data-en="../Alexandre_Pais_CV_EN.pdf" data-pt="../Alexandre_Pais_CV_PT.pdf" download><span class="px-ic" data-px="disk"></span><span data-i18n="save">Save CV</span></a>
+          <a class="pbtn pbtn-ghost" href="https://github.com/AlexPaisDev" target="_blank" rel="noopener">GitHub</a>
+          <a class="pbtn pbtn-ghost" href="https://www.linkedin.com/in/alexandre-pais-6740a91b2/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+
+      <div class="win idcard">
+        <p class="win-label" data-i18n="id.title">ID card</p>
+        <div class="id-body">
+          <div class="portrait"><span class="px-ic" data-px="monitor"></span></div>
+          <dl class="id-fields">
+            <div><dt data-i18n="id.name">Name</dt><dd>Alexandre Pais</dd></div>
+            <div><dt data-i18n="id.class">Class</dt><dd data-i18n="id.classV">Software Engineer</dd></div>
+            <div><dt data-i18n="id.base">Base</dt><dd data-i18n="id.baseV">Lisbon, Portugal</dd></div>
+            <div><dt data-i18n="id.now">Now</dt><dd data-i18n="id.nowV">Consultant at Noesis</dd></div>
+            <div><dt data-i18n="id.speaks">Speaks</dt><dd>PT · EN · ES</dd></div>
+          </dl>
+        </div>
+        <p class="id-status"><span class="led" aria-hidden="true"></span><span data-i18n="id.status">Open to software roles in Asia: remote, hybrid or relocation</span></p>
+        <div class="id-badges">
+          <p class="win-label" data-i18n="id.ach">Achievements</p>
+          <ul>
+            <li><span class="px-ic" data-px="medal"></span><span data-i18n="id.a1">GameJam, 2nd place</span></li>
+            <li><span class="px-ic" data-px="chip"></span><span data-i18n="id.a2">42 Piscine</span></li>
+            <li><span class="px-ic" data-px="cart"></span><span data-i18n="id.a3">Lisbon Games Week</span></li>
+            <li><span class="px-ic" data-px="book"></span><span data-i18n="id.a4">BSc, 2026</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <div class="scene" aria-hidden="true"></div>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="sec" id="about">
+      <h2 class="sec-tab"><span data-i18n="about.tab">About</span></h2>
+      <div class="win prose reveal">
+        <p data-i18n="about.p1">I'm a software engineer who has shipped across games, XR, the web and data. At Arsenal do Alfeite I built Unity apps for PC and iOS, including a ship-navigation simulation wired to Node-RED and an AR viewer for naval assets, and led the demos for the Portuguese Navy, Vodafone and Oracle. At Overflow Interactive I engineered a modular magic and loot system in C#, along with combat, animation state machines, UI and spatial audio.</p>
+        <p data-i18n="about.p2">I like the low-level side as much as the visible one. I rebuilt parts of the C standard library at 42 Lisboa's Piscine, run my own Ubuntu home server with Docker, and spent almost two years as a data engineer at Fraudio. Today I'm a consultant at Noesis, writing Python automation for client projects.</p>
+        <p data-i18n="about.p3">I completed my BSc in Computer Science &amp; Engineering in 2026, including a semester at Macao Polytechnic Institute. Next, I'm looking for a software engineering role in Asia: remote, hybrid, or with relocation.</p>
+      </div>
+    </section>
+
+    <!-- ============ QUEST LOG (experience) ============ -->
+    <section class="sec" id="quests">
+      <h2 class="sec-tab"><span data-i18n="exp.tab">Quest log</span><small data-i18n="nav.exp">Experience</small></h2>
+
+      <article class="win quest active reveal">
+        <header class="q-head">
+          <span class="q-state" data-i18n="q.active">Active</span>
+          <span class="q-when" data-i18n="exp1.when">Jul 2026 – Now</span>
+        </header>
+        <h3 data-i18n="exp1.role">Data Analytics &amp; AI Consultant</h3>
+        <p class="q-org">Noesis · <span data-i18n="exp1.where">Lisbon · client projects</span></p>
+        <p class="q-intro" data-i18n="exp1.intro">Reporting, analytics and automation for client projects, working alongside a Senior Consultant.</p>
+        <ul class="q-list">
+          <li data-i18n="exp1.b1">Built a Python scraper that collects every medicine code and its run-out date from the Infarmed website and loads them into a database automatically.</li>
+          <li data-i18n="exp1.b2">Cut the full run from <b>20 minutes to 2</b> (90% faster) with parallel workers, fallbacks and retry logic.</li>
+          <li data-i18n="exp1.b3">Moved a client's Power BI dashboards from local files to SharePoint, so reports and sources now live online in one central place.</li>
+        </ul>
+        <p class="q-gear"><span data-i18n="gear">Equipped</span> Python · Azure · Power BI · Fabric · SharePoint</p>
+      </article>
+
+      <article class="win quest reveal">
+        <header class="q-head">
+          <span class="q-state done" data-i18n="q.done">Complete</span>
+          <span class="q-when" data-i18n="exp2.when">Oct 2025 – Feb 2026</span>
+        </header>
+        <h3>Game Developer</h3>
+        <p class="q-org">Overflow Interactive · Setúbal</p>
+        <ul class="q-list">
+          <li data-i18n="exp2.b1">Engineered a modular magic and loot system in C# with a decoupled architecture, so reward logic scales and is easy to customise.</li>
+          <li data-i18n="exp2.b2">Built combat systems and animation state machines in Unity, with fluid player feedback and state-driven logic.</li>
+          <li data-i18n="exp2.b3">Designed and implemented responsive UI and integrated spatial audio for environmental immersion.</li>
+          <li data-i18n="exp2.b4">Built immersive 3D levels from provided assets, balancing visual appeal with gameplay flow.</li>
+        </ul>
+        <p class="q-gear"><span data-i18n="gear">Equipped</span> Unity · C# · GitHub · Confluence</p>
+      </article>
+
+      <article class="win quest reveal">
+        <header class="q-head">
+          <span class="q-state done" data-i18n="q.done">Complete</span>
+          <span class="q-when" data-i18n="exp3.when">Mar 2023 – Aug 2023</span>
+        </header>
+        <h3 data-i18n="exp3.role">AR/VR Developer</h3>
+        <p class="q-org">Arsenal do Alfeite S.A. · Almada</p>
+        <ul class="q-list">
+          <li data-i18n="exp3.b1">Built and maintained high-fidelity 3D Unity apps for PC and iOS, optimising performance for mobile hardware.</li>
+          <li data-i18n="exp3.b2">Engineered a ship-navigation simulation integrated with Node-RED, validating real-time data and message brokering between the simulation and external controllers.</li>
+          <li data-i18n="exp3.b3">Designed and deployed an iOS AR app for interactive 3D visualisation of naval assets.</li>
+          <li data-i18n="exp3.b4">Technical lead for live demos and system presentations to the Portuguese Navy, Vodafone and Oracle.</li>
+        </ul>
+        <p class="q-gear"><span data-i18n="gear">Equipped</span> Unity · C# · Node-RED · iOS · AR · Xcode</p>
+      </article>
+
+      <article class="win quest reveal">
+        <header class="q-head">
+          <span class="q-state done" data-i18n="q.done">Complete</span>
+          <span class="q-when" data-i18n="exp4.when">Sep 2020 – Apr 2022</span>
+        </header>
+        <h3>Data Engineer</h3>
+        <p class="q-org">Fraudio B.V. · <span data-i18n="exp4.where">Lisbon</span></p>
+        <ul class="q-list">
+          <li data-i18n="exp4.b1">Built and ran large-scale analytics dashboards on Databricks with Scala, for real-time fraud-pattern analysis.</li>
+          <li data-i18n="exp4.b2">Benchmarked storage technologies (MongoDB, Redis and others, with YCSB) to improve query latency and scalability.</li>
+          <li data-i18n="exp4.b3">Automated reporting by connecting Databricks to the Slack API, speeding up incident response.</li>
+          <li data-i18n="exp4.b4">Worked in an agile DevOps team, supporting reliable distributed data processing.</li>
+        </ul>
+        <p class="q-gear"><span data-i18n="gear">Equipped</span> Databricks · Scala · Python · SQL · MongoDB · Redis</p>
+      </article>
+
+      <article class="win quest reveal">
+        <header class="q-head">
+          <span class="q-state done" data-i18n="q.done">Complete</span>
+          <span class="q-when" data-i18n="exp5.when">Mar 2020 – Jun 2020</span>
+        </header>
+        <h3>Web Developer</h3>
+        <p class="q-org">ScorpionBonus · Almada</p>
+        <ul class="q-list">
+          <li data-i18n="exp5.b1">Developed and maintained admin portals and landing pages for a portfolio of corporate clients.</li>
+          <li data-i18n="exp5.b2">Designed relational MySQL schemas for data integrity and fast queries.</li>
+          <li data-i18n="exp5.b3">Turned business requirements into web features, with attention to UX and cross-browser compatibility.</li>
+        </ul>
+        <p class="q-gear"><span data-i18n="gear">Equipped</span> HTML · CSS · JavaScript · PHP · MySQL</p>
+      </article>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section class="sec" id="projects">
+      <h2 class="sec-tab"><span data-i18n="nav.proj">Projects</span></h2>
+
+      <article class="win feature reveal">
+        <div class="f-copy">
+          <p class="p-tag"><span class="px-ic" data-px="ship"></span>Arsenal do Alfeite · 2023</p>
+          <h3 data-i18n="p1.title">Naval simulator &amp; AR viewer</h3>
+          <p data-i18n="p1.desc">Unity apps for PC and iOS for a naval shipyard: a ship-navigation simulation that exchanges real-time messages with external controllers through Node-RED, and an iOS AR app for exploring 3D models of naval assets. Tuned for mobile hardware, and demoed live by me to the Portuguese Navy, Vodafone and Oracle.</p>
+          <p class="q-gear"><span data-i18n="gear">Equipped</span> Unity · C# · Node-RED · iOS · AR</p>
+        </div>
+        <figure class="loop" aria-label="A Unity simulation exchanges real-time messages with external controllers through a Node-RED broker" data-i18n-attr="aria-label:p1.flowAria">
+          <figcaption data-i18n="p1.flow">Real-time loop</figcaption>
+          <div class="loop-row">
+            <span class="node"><b data-i18n="p1.n1">Unity sim</b><small>PC · iOS</small></span>
+            <span class="wire" aria-hidden="true"><i></i><i></i></span>
+            <span class="node node-hot"><b>Node-RED</b><small>broker</small></span>
+            <span class="wire" aria-hidden="true"><i></i><i></i></span>
+            <span class="node"><b data-i18n="p1.n3">Controllers</b><small data-i18n="p1.n3s">external</small></span>
+          </div>
+        </figure>
+      </article>
+
+      <div class="items">
+        <article class="win item reveal">
+          <p class="p-tag"><span class="px-ic" data-px="cart"></span>Overflow Interactive · 2025–26</p>
+          <h3 data-i18n="p2.title">Magic &amp; loot system</h3>
+          <p data-i18n="p2.desc">A modular C# system for magic and loot with a decoupled architecture, so reward logic scales and is easy to customise. Alongside it: combat, animation state machines, UI and spatial audio in Unity.</p>
+          <p class="q-gear"><span data-i18n="gear">Equipped</span> C# · Unity</p>
+        </article>
+        <article class="win item reveal">
+          <p class="p-tag"><span class="px-ic" data-px="medal"></span><span data-i18n="p3.tag">GameJam 2nd place · IADE 2022</span></p>
+          <h3>Little Help</h3>
+          <p data-i18n="p3.desc">An arcade game about the challenges of homelessness, built in 72 hours. I engineered the resource and time management system and the reward loop, where players balance people's requests against a limited budget and the clock.</p>
+          <a class="pbtn pbtn-sm" href="https://lodyny.itch.io/little.help" target="_blank" rel="noopener"><span data-i18n="play">Play on itch.io</span></a>
+        </article>
+        <article class="win item reveal">
+          <p class="p-tag"><span class="px-ic" data-px="server"></span><span data-i18n="p4.tag">Self-hosted · 2026</span></p>
+          <h3 data-i18n="p4.title">Home server</h3>
+          <p data-i18n="p4.desc">A dedicated Ubuntu Server that I run and administer over SSH. I'm containerising my projects and services with Docker and Docker Compose, with isolated environments for development, testing and hosting.</p>
+          <p class="q-gear"><span data-i18n="gear">Equipped</span> Linux · SSH · Docker · Compose</p>
+        </article>
+      </div>
+
+      <h3 class="sub-tab" data-i18n="tools.title">Personal tools</h3>
+      <p class="sub-intro" data-i18n="tools.intro">Outside work I build tools for myself and use them every day. These three are open source.</p>
+      <div class="items">
+        <article class="win item reveal">
+          <div class="thumb thumb-avalon" aria-hidden="true">
+            <svg viewBox="0 0 250 108"><defs><linearGradient id="av-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7dc84" /><stop offset=".55" stop-color="#e6bd4e" /><stop offset="1" stop-color="#b2892c" /></linearGradient></defs><path fill="url(#av-g)" d="M0 108 58 0l58 108zM66 0h118l-59 108zM134 108 192 0l58 108z" /><path fill="#b2892c" opacity=".45" d="M58 30 22 98h36zM125 72 94 14h31zM192 30 156 98h36z" /><g fill="#62e6f0"><circle cx="58" cy="72" r="7" /><circle cx="125" cy="36" r="7" /><circle cx="192" cy="72" r="7" /></g></svg>
+            <span lang="ja">アヴァロン</span>
+          </div>
+          <h3>Avalon OS &amp; Search</h3>
+          <p data-i18n="t1.desc">My browser home page, run as a tiny operating system. Its search queries several sources at once, merges results that point to the same page and ranks the ones found by more sources higher. Plus a tech feed, a monitor for my home-network services and my GitHub activity. No build step, no framework.</p>
+          <a class="pbtn pbtn-sm" href="https://github.com/AlexPaisDev/CustomHomePage" target="_blank" rel="noopener"><span data-i18n="code">View code</span></a>
+        </article>
+        <article class="win item reveal">
+          <div class="thumb thumb-buddy" aria-hidden="true">
+            <canvas class="guardian" width="40" height="30" title="Click me"></canvas>
+            <span class="meters"><span><em>5H</em><i style="--w:42%"></i></span><span><em>7D</em><i style="--w:68%"></i></span></span>
+          </div>
+          <h3>Claude Usage Buddy</h3>
+          <p data-i18n="t2.desc">An always-on-top Windows widget (Electron) that shows my Claude 5-hour and weekly usage limits. It reads the rate-limit data Claude Code hands to its status line, and a pixel guardian reacts as the limits get closer.</p>
+          <a class="pbtn pbtn-sm" href="https://github.com/AlexPaisDev/claude-usage-buddy" target="_blank" rel="noopener"><span data-i18n="code">View code</span></a>
+        </article>
+        <article class="win item reveal">
+          <div class="thumb thumb-bot" aria-hidden="true">
+            <span class="q">/ask what's new in Unity?</span>
+            <span class="a">Searching the web…</span>
+          </div>
+          <h3 data-i18n="t3.title">AI agent for Discord</h3>
+          <p data-i18n="t3.desc">A Discord bot in Python powered by the DeepSeek API. It streams its replies, keeps a memory per channel and calls tools (web search, page reading, GIF lookup) through function calling. Fully async, packaged with Docker for 24/7 hosting.</p>
+          <a class="pbtn pbtn-sm" href="https://github.com/AlexPaisDev/deepseek-discord-bot" target="_blank" rel="noopener"><span data-i18n="code">View code</span></a>
+        </article>
+      </div>
+
+      <h3 class="sub-tab" data-i18n="found.title">Foundations</h3>
+      <div class="win reveal">
+        <ul class="menu-list">
+          <li><a href="https://github.com/AlexPaisDev/Dungeon_Below" target="_blank" rel="noopener"><b>Dungeon Below</b><span data-i18n="arc1">3D tower defense in Unity with enemy AI, waves and level progression.</span></a></li>
+          <li><a href="https://github.com/AlexPaisDev/libft" target="_blank" rel="noopener"><b>libft &amp; ft_printf</b><span data-i18n="arc2">The C standard library and printf, rebuilt from scratch at 42's Piscine.</span></a></li>
+          <li><a href="https://github.com/AlexPaisDev/HotelReservationWebSite" target="_blank" rel="noopener"><b data-i18n="arc3.t">Hotel reservations</b><span data-i18n="arc3">Full-stack booking site in PHP with a MySQL back end and an admin panel. Final project, 2020.</span></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="sec" id="skills">
+      <h2 class="sec-tab"><span data-i18n="nav.skills">Skills</span></h2>
+      <div class="bag">
+        <div class="win reveal"><h3 data-i18n="sk1">Languages</h3><ul class="pix-list"><li>C#</li><li>C</li><li>Java</li><li>Python</li><li>SQL</li><li>JavaScript</li><li>PHP</li><li>Scala</li></ul></div>
+        <div class="win reveal"><h3 data-i18n="sk2">Games &amp; XR</h3><ul class="pix-list"><li>Unity</li><li data-i18n="sk2a">Animation state machines</li><li data-i18n="sk2b">AR on iOS</li><li data-i18n="sk2c">UI &amp; spatial audio</li><li>Level design</li></ul></div>
+        <div class="win reveal"><h3 data-i18n="sk3">Systems &amp; infra</h3><ul class="pix-list"><li>Linux (Ubuntu Server)</li><li>SSH</li><li>Docker</li><li>Docker Compose</li><li>Node-RED</li></ul></div>
+        <div class="win reveal"><h3>Web</h3><ul class="pix-list"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>PHP</li><li>MySQL</li></ul></div>
+        <div class="win reveal"><h3 data-i18n="sk5">Data &amp; cloud</h3><ul class="pix-list"><li>Databricks</li><li>Microsoft Azure</li><li>Power BI</li><li>MongoDB</li><li>Redis</li></ul></div>
+        <div class="win reveal"><h3 data-i18n="sk6">Tools</h3><ul class="pix-list"><li>Git &amp; GitHub</li><li>Visual Studio Code</li><li>Xcode</li><li>Confluence</li><li>Agile · DevOps</li></ul></div>
+      </div>
+    </section>
+
+    <!-- ============ RECORDS (education & languages) ============ -->
+    <section class="sec" id="records">
+      <h2 class="sec-tab"><span data-i18n="rec.tab">Records</span><small data-i18n="rec.sub">Education &amp; languages</small></h2>
+      <div class="rec-grid">
+        <div class="win reveal">
+          <h3 data-i18n="rec.edu">Education</h3>
+          <ul class="rec-list">
+            <li><span class="yr">2023–26</span><div><b data-i18n="edu1.t">BSc in Computer Science &amp; Engineering</b><span data-i18n="edu1.s">Polytechnic Institute of Setúbal (IPS)</span></div></li>
+            <li><span class="yr">2025</span><div><b data-i18n="edu2.t">Academic mobility programme</b><span data-i18n="edu2.s">Macao Polytechnic Institute: one semester in Macao</span></div></li>
+            <li><span class="yr">2021–23</span><div><b data-i18n="edu3.t">CTeSP, Game Development &amp; Multimedia</b><span data-i18n="edu1.s">Polytechnic Institute of Setúbal (IPS)</span></div></li>
+            <li><span class="yr">2017–20</span><div><b data-i18n="edu4.t">Vocational course, IT Systems Management &amp; Programming</b><span>Escola Secundária de Cacilhas-Tejo</span></div></li>
+          </ul>
+        </div>
+        <div class="rec-side">
+          <div class="win reveal">
+            <h3 data-i18n="id.ach">Achievements</h3>
+            <ul class="rec-list">
+              <li><span class="px-ic" data-px="chip"></span><div><b data-i18n="aw1.t">42 Piscine, C programming · 2023</b><span data-i18n="aw1.s">26 days at 42 Lisboa: libc rebuilt from scratch, manual memory management, leak-free code.</span></div></li>
+              <li><span class="px-ic" data-px="medal"></span><div><b data-i18n="aw2.t">Games For Good GameJam, 2nd · 2022</b><span data-i18n="aw2.s">IADE. Little Help, built in 72 hours.</span></div></li>
+              <li><span class="px-ic" data-px="cart"></span><div><b data-i18n="aw3.t">Lisbon Games Week · 2022</b><span data-i18n="aw3.s">Official IPS representative: live playtesting, and a workshop led by Kwalee's CTO.</span></div></li>
+            </ul>
+          </div>
+          <div class="win reveal">
+            <h3 data-i18n="lang.title">Languages</h3>
+            <div class="lvl"><b data-i18n="lang.pt">Portuguese</b><span class="seg l6" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span><em data-i18n="lang.native">Native</em></div>
+            <div class="lvl"><b data-i18n="lang.en">English</b><span class="seg l5" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span><em>C2 / C1</em></div>
+            <div class="lvl"><b data-i18n="lang.es">Spanish</b><span class="seg l2" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span><em>A2</em></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="sec" id="contact">
+      <h2 class="sec-tab"><span data-i18n="nav.contact">Contact</span></h2>
+      <div class="win dialog dialog-static reveal">
+        <p data-i18n="contact.lede">Want to build something together? I'm looking for software engineering roles in Asia, remote, hybrid or with relocation. Pick an option below.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="win reveal">
+          <ul class="menu-list contact-menu">
+            <li><a href="mailto:alexpaisdev@gmail.com"><b>Email</b><span>alexpaisdev@gmail.com</span></a><button class="pbtn pbtn-sm copy" type="button" data-copy="alexpaisdev@gmail.com" aria-label="Copy email address" data-i18n-attr="aria-label:contact.copyAria"><span data-copy-label data-i18n="contact.copy">Copy</span></button></li>
+            <li><a href="tel:+351910863020"><b data-i18n="contact.call">Call</b><span>+351 910 863 020</span></a></li>
+            <li><a href="https://www.linkedin.com/in/alexandre-pais-6740a91b2/" target="_blank" rel="noopener"><b>LinkedIn</b><span>alexandre-pais</span></a></li>
+            <li><a href="https://github.com/AlexPaisDev" target="_blank" rel="noopener"><b>GitHub</b><span>AlexPaisDev</span></a></li>
+          </ul>
+        </div>
+        <form class="win form reveal" id="contact-form" action="https://formspree.io/f/mwvrvdog" method="POST">
+          <h3 data-i18n="form.title">Leave a message</h3>
+          <label class="field"><span data-i18n="form.name">Name</span><input type="text" name="name" autocomplete="name" required></label>
+          <label class="field"><span>Email</span><input type="email" name="email" autocomplete="email" required></label>
+          <label class="field"><span data-i18n="form.msg">Message</span><textarea name="message" rows="4" required></textarea></label>
+          <input type="hidden" name="profile" value="software">
+          <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="pbtn pbtn-main" type="submit"><span class="cur" aria-hidden="true"></span><span data-i18n="form.send">Send</span></button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bar foot">
+    <div class="bar-row">
+      <p>© <span id="year">2026</span> Alexandre Pais</p>
+      <p><a href="../" data-i18n="foot.both">Both sides</a> · <a href="../data/" data-i18n="foot.other">Data side</a></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/i18n/pt-common.js" defer></script>
+  <script src="../assets/js/i18n/pt-software.js" defer></script>
+  <script src="../assets/js/site.js" defer></script>
+</body>
+</html>
