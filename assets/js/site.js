@@ -412,6 +412,41 @@
     });
   }
 
+  /* ---------------------------------------------------------------------
+     PATCH NOTES (start page) — GitHub activity from assets/data/activity.json
+     (written by tools/github_activity.py). XP = contributions in the last year,
+     one level every 50 XP.
+     --------------------------------------------------------------------- */
+  const notes = $('#notes');
+  if (notes) {
+    const XP_PER_LEVEL = 50;
+    const level = n => (n === 0 ? 0 : n < 3 ? 1 : n < 6 ? 2 : n < 10 ? 3 : 4);
+    const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+    let data = null;
+    function render() {
+      const { stats, calendar, notes: list, updated } = data;
+      $('#nt-year').textContent = stats.year;
+      $('#nt-streak').textContent = stats.streak;
+      $('#nt-days').textContent = stats.activeDays;
+      $('#nt-lv').textContent = Math.floor(stats.year / XP_PER_LEVEL) + 1;
+      $('#nt-xp').style.width = `${(stats.year % XP_PER_LEVEL) / XP_PER_LEVEL * 100}%`;
+      $('#nt-xptxt').textContent = `${stats.year % XP_PER_LEVEL}/${XP_PER_LEVEL}`;
+      $('#nt-updated').textContent = updated;
+      const word = t('notes.contribs', 'contributions');
+      const cal = $('#nt-cal');
+      cal.setAttribute('aria-label', `${calendar.reduce((s, d) => s + d.count, 0)} ${word}, ${t('notes.weeks', 'last 26 weeks')}`);
+      cal.innerHTML = calendar.map(d => `<i class="l${level(d.count)}" title="${d.date}: ${d.count} ${word}"></i>`).join('');
+      $('#nt-list').innerHTML = list.slice(0, 4).map(n =>
+        `<li><a href="${esc(n.url)}" target="_blank" rel="noopener"><span class="ver">v${n.date.slice(2).replace(/-/g, '.')}</span>` +
+        `<b>${esc(n.repo)}</b><span class="msg">${esc(n.message)}</span></a></li>`).join('');
+      notes.hidden = false;
+    }
+    fetch('assets/data/activity.json', { cache: 'no-cache' })
+      .then(r => (r.ok ? r.json() : Promise.reject(r.status)))
+      .then(d => { data = d; render(); listeners.push(render); })
+      .catch(() => { /* no data: the panel just stays hidden */ });
+  }
+
   const year = $('#year');
   if (year) year.textContent = new Date().getFullYear();
 })();

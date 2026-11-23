@@ -12,4 +12,13 @@ window.I18N_PT = Object.assign(window.I18N_PT || {}, {
   'home.enter': 'Entrar',
   'home.note': 'Podes mudar de lado a qualquer momento na barra de cima.',
   'home.cvs': 'Todos os CVs',
+  'notes.title': 'Notas de versão',
+  'notes.xpHint': 'XP = contribuições no último ano',
+  'notes.year': 'contribuições no último ano',
+  'notes.streak': 'dias seguidos',
+  'notes.days': 'dias ativos',
+  'notes.more': 'Toda a atividade no GitHub',
+  'notes.updated': 'atualizado a',
+  'notes.contribs': 'contribuições',
+  'notes.weeks': 'últimas 26 semanas',
 });

@@ -34,9 +34,12 @@ assets/js/i18n/         Portuguese text
   pt-software.js          software side only
   pt-home.js              start page
 assets/img/             favicon, home-screen icon, link-preview image (og-image.png)
+assets/data/activity.json  GitHub activity for the start page's Patch notes (refreshed daily)
 
 tools/check_site.py     run after editing: missing translations, broken links, duplicate ids
 tools/pixel_art.py      regenerates the pixel art (window frames, tiles, scenery, icons, preview image)
+tools/github_activity.py  collects the GitHub activity into assets/data/activity.json
+.github/workflows/activity.yml  runs that script every day and commits the result
 tools/cv/content.py     the text of all four CVs
 tools/cv/build_cvs.py   turns content.py into the CV files (Word layout from tools/cv/template.docx)
 cv-source/              editable .docx copies of the CVs (made by build_cvs.py, kept local, not published)
@@ -57,6 +60,8 @@ cv-source/              editable .docx copies of the CVs (made by build_cvs.py, 
 **Colours.** At the top of `pixel.css` (after the generated block) there are two theme blocks: `:root, .theme-soft` for red and `html[data-side="data"], .theme-data` for blue. Change the `--c1`, `--bar` and similar values there. The window frames, background tiles and scenery are small generated images: change their colours in `tools/pixel_art.py` and run `python tools/pixel_art.py`. That needs [Pillow](https://pypi.org/project/pillow/) for the icons and the preview image.
 
 **Pixel icons.** Use `<span class="px-ic" data-px="disk"></span>`. Available: `monitor`, `chip`, `medal`, `cart`, `server`, `ship`, `mail`, `disk`, `book`. They're drawn letter by letter in `ICONS` inside `site.js`, so you can edit a row or add a new icon there.
+
+**Patch notes (start page).** The panel at the bottom of the start page shows your GitHub contribution calendar (last 26 weeks), a level with an XP bar (XP = contributions in the last year, one level per 50) and your latest commits. It reads `assets/data/activity.json`, which a GitHub Action refreshes every day. To refresh it by hand, run `python tools/github_activity.py`, or start the *Update GitHub activity* workflow from the repository's Actions tab. Only public repositories appear.
 
 **Contact form.** It posts to Formspree (`action="https://formspree.io/f/…"` on `#contact-form`). Messages carry a hidden `profile` field (`data` or `software`), so you know which side they came from.
 

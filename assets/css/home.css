@@ -26,14 +26,14 @@
 .js .half-scene { animation: drift 30s linear infinite; }
 .theme-data .half-scene { animation-duration: 14s; }
 
-.half-win { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; width: min(420px, 100%); padding: 18px 22px 22px; transition: transform .2s steps(3); }
-.half-ic { display: grid; place-items: center; width: 72px; height: 72px; margin-bottom: 6px; border: 3px solid var(--ink); background: var(--c1l); }
-.half-ic .px-ic { width: 52px; height: 52px; }
+.half-win { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; width: min(420px, 100%); padding: 14px 20px 18px; transition: transform .2s steps(3); }
+.half-ic { display: grid; place-items: center; width: 60px; height: 60px; margin-bottom: 4px; border: 3px solid var(--ink); background: var(--c1l); }
+.half-ic .px-ic { width: 44px; height: 44px; }
 .half-kicker { font-size: 15px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--c1d); }
 .half-name { font-size: clamp(30px, 3.6vw, 42px); font-weight: 700; line-height: 1.05; color: var(--c1); text-shadow: 3px 3px 0 var(--ink); }
 .half-role { font-size: 18px; color: var(--ink); }
 .half-list { font-size: 16px; color: var(--muted); }
-.half-go { margin-top: 14px; }
+.half-go { margin-top: 10px; }
 
 .half:hover, .half:focus-visible { flex-grow: 1.25; }
 .half:hover .half-win, .half:focus-visible .half-win { transform: translateY(-6px); }
@@ -51,4 +51,41 @@
   .half:hover, .half:focus-visible { flex-grow: 1; }
   .half-ic { width: 60px; height: 60px; }
   .half-ic .px-ic { width: 44px; height: 44px; }
+}
+
+/* ---------- patch notes: GitHub activity across the seam ---------- */
+.split { position: relative; }
+.home .half { padding-top: 150px; padding-bottom: 290px; }   /* room for the title card above and the panel below */
+.notes {
+  position: absolute; left: 50%; bottom: 46px; z-index: 4; transform: translateX(-50%);
+  width: min(860px, calc(100% - 32px)); padding: 6px 14px 8px; border-image-source: var(--frame-plain);
+}
+.notes-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 16px; }
+.notes-head h2 { font-size: 20px; color: var(--ink); text-transform: uppercase; letter-spacing: .06em; }
+.notes-lv { display: flex; align-items: center; gap: 8px; font-size: 15px; }
+.notes-lv b { padding: 1px 7px; background: var(--ink); color: #fff; text-shadow: none; }
+.xp { width: 120px; height: 12px; padding: 2px; background: var(--ink); }
+.xp i { display: block; height: 100%; width: 0; background: repeating-linear-gradient(90deg, #58c870 0 6px, #8fe0a0 6px 8px); }
+.xp-txt { color: var(--muted); }
+.notes-body { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 18px; margin-top: 6px; }
+.cal { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 10px); grid-auto-columns: 10px; gap: 2px; padding: 4px; background: #e6e6de; border: 3px solid var(--ink); width: max-content; }
+.cal i { background: #d2d2c8; }
+.cal .l1 { background: #a8e4b4; } .cal .l2 { background: #58c870; } .cal .l3 { background: #2f9a4c; } .cal .l4 { background: #1d6634; }
+.notes-stats { margin: 8px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 2px 14px; font-size: 14px; color: var(--muted); max-width: 330px; }
+.notes-stats b { color: var(--ink); font-size: 16px; }
+.notes-list { margin: 0; padding: 0; list-style: none; min-width: 0; }
+.notes-list li + li { border-top: 2px dotted #d2d2c8; }
+.notes-list a { display: flex; align-items: baseline; gap: 8px; padding: 3px 2px; text-decoration: none; font-size: 15px; white-space: nowrap; }
+.notes-list a:hover b { text-decoration: underline; }
+.ver { flex: none; padding: 0 5px; font-size: 12px; background: var(--ink); color: #fff; text-shadow: none; }
+.notes-list b { flex: none; color: var(--ink); }
+.msg { min-width: 0; overflow: hidden; text-overflow: ellipsis; color: var(--muted); }
+.notes-foot { margin-top: 4px; font-size: 13px; color: var(--muted); }
+
+@media (max-width: 760px) {
+  .home .half { padding: 28px 16px 64px; }
+  .notes { position: static; transform: none; width: auto; margin: 0; border-top: 6px solid var(--ink); }
+  .notes-body { grid-template-columns: 1fr; }
+  .cal { grid-template-rows: repeat(7, 8px); grid-auto-columns: 8px; }
+  .notes-list a { flex-wrap: wrap; white-space: normal; }
 }

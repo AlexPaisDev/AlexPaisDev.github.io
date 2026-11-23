@@ -73,6 +73,31 @@
         <span class="pbtn pbtn-main half-go"><span class="cur" aria-hidden="true"></span><span data-i18n="home.enter">Enter</span></span>
       </span>
     </a>
+
+    <!-- PATCH NOTES: filled by site.js from assets/data/activity.json (refreshed daily by
+         .github/workflows/activity.yml). Stays hidden if that file can't be loaded. -->
+    <section class="win notes" id="notes" aria-labelledby="notes-title" hidden>
+      <header class="notes-head">
+        <h2 id="notes-title" data-i18n="notes.title">Patch notes</h2>
+        <div class="notes-lv" title="XP = contributions in the last year" data-i18n-attr="title:notes.xpHint">
+          <b>LV <span id="nt-lv">1</span></b>
+          <span class="xp" aria-hidden="true"><i id="nt-xp"></i></span>
+          <span class="xp-txt"><span id="nt-xptxt">0/50</span> XP</span>
+        </div>
+      </header>
+      <div class="notes-body">
+        <div class="notes-cal">
+          <div class="cal" id="nt-cal" role="img"></div>
+          <ul class="notes-stats">
+            <li><b id="nt-year">0</b> <span data-i18n="notes.year">contributions in the last year</span></li>
+            <li><b id="nt-streak">0</b> <span data-i18n="notes.streak">day streak</span></li>
+            <li><b id="nt-days">0</b> <span data-i18n="notes.days">active days</span></li>
+          </ul>
+        </div>
+        <ol class="notes-list" id="nt-list"></ol>
+      </div>
+      <p class="notes-foot"><a href="https://github.com/AlexPaisDev" target="_blank" rel="noopener"><span data-i18n="notes.more">All activity on GitHub</span> ↗</a> · <span data-i18n="notes.updated">updated</span> <span id="nt-updated"></span></p>
+    </section>
   </main>
 
   <footer class="home-foot">
